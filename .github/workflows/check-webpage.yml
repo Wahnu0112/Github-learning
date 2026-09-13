@@ -1,0 +1,19 @@
+name: Check Webpage
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-webpage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Check index.html exists
+        run: test -f index.html
+
+      - name: Check webpage has a heading
+        run: grep -q "<h1>" index.html
